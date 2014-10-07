@@ -1,6 +1,4 @@
-# Edit the lines in this block to match your local config. DO NOT EDIT BELOW THIS BLOCK!
-#
-#
+// Edit the lines in this block to match your local config. DO NOT EDIT BELOW THIS BLOCK!
 
 var client = new syscoin.Client({
   host: 'localhost',
@@ -14,7 +12,7 @@ var islocked = 0; # Change to 1 if your wallet is encrypted
 var islockedpw = 'mywalletpass';  # Change this to your wallet passphrase if encrypted
 
 
-################## END OF CONFIG ##################
+/////////////////// END OF CONFIG ///////////////
 
 var aliases;
 
