@@ -8,8 +8,8 @@ var client = new syscoin.Client({
   timeout: 180000
 });
 
-var islocked = 0; # Change to 1 if your wallet is encrypted
-var islockedpw = 'mywalletpass';  # Change this to your wallet passphrase if encrypted
+var islocked = 0; // Change to 1 if your wallet is encrypted
+var islockedpw = 'mywalletpass';  // Change this to your wallet passphrase if encrypted
 
 
 /////////////////// END OF CONFIG ///////////////
@@ -19,7 +19,7 @@ var aliases;
 client.aliasList(function(err, result, resHeaders){
   if (err) return console.log(err);
   aliases = result;
-  console.log(aliases);  # Debug print for development
+  console.log(aliases);  // Debug print for development
 });
 
 for(var i = 0; i < aliases.length; i++){
