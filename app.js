@@ -15,20 +15,24 @@ var islockedpw = 'mywalletpass';  // Change this to your wallet passphrase if en
 
 /////////////////// END OF CONFIG ///////////////
 
-var aliases;
+var aliases = '';
+var aliasinf = ''
 
 client.aliasList(function(err, result, resHeaders){
   if (err) return console.log(err);
   aliases = result;
   console.log('Result of aliases: ', aliases);  // Debug print for development
   for(var i = 0; i < aliases.length; i++){
-    if(aliases[i].expiry <= 100){
-      if(islocked == 1) client.walletpassphrase(islockedpw, 1000, function(err,result,resHeaders){});// Do the wallet unlock clause here (one line, if locked --> unlock)
-      client.aliasUpdate(aliases[i].name, aliases[i].value, function(err,result,resHeaders){
-        if (err) return console.log(err);
-        console.log(result);
+    if(aliases[i].expires_in <= 100){
+      client.aliasInfo(aliases[i].name, function(err, result, resHeaders){
+        aliasinf = result;
+        if(islocked == 1) client.walletpassphrase(islockedpw, 1000, function(err,result,resHeaders){});// Do the wallet unlock clause here (one line, if locked --> unlock)
+        client.aliasUpdate(aliasinf.name, aliasinf.value, function(err,result,resHeaders){
+          if (err) return console.log(err);
+          console.log(result);
+        });
+        if(islocked == 1) client.walletlock();
       });
-      if(islocked == 1) client.walletlock();
     };
   };
 });
