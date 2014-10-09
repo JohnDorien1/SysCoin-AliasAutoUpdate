@@ -20,15 +20,17 @@ var aliases;
 client.aliasList(function(err, result, resHeaders){
   if (err) return console.log(err);
   aliases = result;
-  console.log(aliases);  // Debug print for development
+  console.log('Result of aliases: ', aliases);  // Debug print for development
+  for(var i = 0; i < aliases.length; i++){
+    if(aliases[i].expiry <= 100){
+      if(islocked == 1) client.walletpassphrase(islockedpw, 1000, function(err,result,resHeaders){});// Do the wallet unlock clause here (one line, if locked --> unlock)
+      client.aliasUpdate(aliases[i].name, aliases[i].value, function(err,result,resHeaders){
+        if (err) return console.log(err);
+        console.log(result);
+      });
+      if(islocked == 1) client.walletlock();
+    };
+  };
 });
 
-for(var i = 0; i < aliases.length; i++){
-  if(aliases[i].expiry <= 100){
-    // Do the wallet unlock clause here (one line, if locked --> unlock)
-    client.aliasUpdate(aliases[i].name, aliases[i].value, function(err,result,resHeaders){
-      if (err) return console.log(err);
-      console.log(result);
-    });
-  };
-};
+
