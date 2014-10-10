@@ -23,7 +23,10 @@ var aliases = '';
 var aliasinf = ''
 
 var actualtimestamp = (new Date).getTime();
-if (turnitofftimestamp >= actualtimestamp){console.log('Limit timestamp met. Aborting update'); break;};
+if (turnitofftimestamp >= actualtimestamp){
+  console.log('Limit timestamp met. Aborting update'); 
+  process.exit();
+};
 client.aliasList(function(err, result, resHeaders){
   if (err) return console.log(err);
   aliases = result;
