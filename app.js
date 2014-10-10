@@ -33,7 +33,7 @@ client.aliasList(function(err, result, resHeaders){
         aliasinf = result;
         var check = specaliases.indexOf(aliasinf.name);
         if(updateall == 0 && check != (-1)){
-          if(islocked == 1) client.walletpassphrase(islockedpw, 1000, function(err,result,resHeaders){});// Do the wallet unlock clause here (one line, if locked --> unlock)
+          if(islocked == 1) client.walletpassphrase(islockedpw, '1000', function(err,result,resHeaders){});// Do the wallet unlock clause here (one line, if locked --> unlock)
           client.aliasUpdate(aliasinf.name, aliasinf.value, function(err,result,resHeaders){
             if (err) return console.log(err);
             console.log(result);
